@@ -1,0 +1,75 @@
+###
+GET http://127.0.0.1:8000/achievements/
+
+###
+//  получение токена
+POST http://127.0.0.1:8000/auth/jwt/create/ 
+Content-Type: application/json
+
+{
+    "username": "artem",
+    "password": "300580"
+}
+
+###
+
+{
+  "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY3MTAxNzIxMSwianRpIjoiYzE3YTU1NjA3ODE4NDk2NThkMzMzMGQ3NDU1OGU0MTIiLCJ1c2VyX2lkIjoxfQ.p0qCn0d2JA8HFmFHB0XR0-zgDhZxKMkBdUZrcxF4zro",
+  "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjcxMDE3MjExLCJqdGkiOiIwMTlkYWUyOWVmZTU0MWMxYTk1NjM2YWVmZGExZmQ1NyIsInVzZXJfaWQiOjF9.kpLLgL-2M6U8bPVir8vhDh45gRe8kf94Zx8FqdLI5rk"
+}
+
+###
+POST http://127.0.0.1:8000/users/
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjcxMDE3MjExLCJqdGkiOiIwMTlkYWUyOWVmZTU0MWMxYTk1NjM2YWVmZGExZmQ1NyIsInVzZXJfaWQiOjF9.kpLLgL-2M6U8bPVir8vhDh45gRe8kf94Zx8FqdLI5rk
+
+{
+    "username": "artem",
+    "last_name": "androsov"
+}
+
+###
+PUT http://127.0.0.1:8000/cats/12/
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjcxMDE3MjExLCJqdGkiOiIwMTlkYWUyOWVmZTU0MWMxYTk1NjM2YWVmZGExZmQ1NyIsInVzZXJfaWQiOjF9.kpLLgL-2M6U8bPVir8vhDh45gRe8kf94Zx8FqdLI5rk
+
+{
+    "name": "Зомбиc",
+    "color": "White",
+    "birth_year": 2011,
+    "owner": 1,
+    "achievement_name": [
+        {"name": "поймал мышку"},
+        {"name": "разбил вазу"}
+    ]
+} 
+
+
+###
+POST http://127.0.0.1:8000/cats/?ordering=name
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjcxNDQ0MDgzLCJqdGkiOiI5ZDNkZGU4ZTkxOWE0ODE3YjczMjQzNjdiNTRlMGRlZCIsInVzZXJfaWQiOjF9.adFPjWCpJVx_LSLUKCeg-litvBiUcjRRoL4VESykVLw
+
+{
+    "name": "Бездельник",
+    "color": "Whites",
+    "birth_year": 2017,
+    "owner": 1
+} 
+
+###
+GET http://127.0.0.1:8000/cats/?ordering=-name
+
+### 
+// запрос конкретного котика
+###
+GET  http://127.0.0.1:8000/cats/2/
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjcxMDE3MjExLCJqdGkiOiIwMTlkYWUyOWVmZTU0MWMxYTk1NjM2YWVmZGExZmQ1NyIsInVzZXJfaWQiOjF9.kpLLgL-2M6U8bPVir8vhDh45gRe8kf94Zx8FqdLI5rk
+
+###
+GET http://127.0.0.1:8000/cats/recent-white-cats/
+
+
+###
+// запрос на всех белых котиков
+GET http://127.0.0.1:8000/cats/?color=White
